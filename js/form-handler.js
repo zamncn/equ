@@ -9,7 +9,7 @@
   // 默认端点（表单 action 已是 web3forms；此值仅作回退）
   var DEFAULT_ENDPOINT = 'https://api.web3forms.com/submit';
   // ★ 唯一需要替换的地方：去 https://web3forms.com 输入你的收信邮箱获取 access key
-  var ACCESS_KEY = 'REPLACE_WITH_YOUR_WEB3FORMS_KEY';
+  var ACCESS_KEY = '749b6475-0ce6-4b19-8128-0de751d7b217';
 
   function getEndpoint(form) {
     var a = form.getAttribute('action');
