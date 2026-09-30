@@ -144,7 +144,7 @@
             <div class="col-md-10 col-lg-6 col-xl-5">
               <h3>Login form</h3>
               <!-- RD Mailform-->
-              <form class="rd-form rd-mailform rd-form-centered">
+              <form class="rd-form rd-form-centered" data-form-type="contact" data-form-output="form-output-global" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="post">
                 <div class="form-wrap">
                   <input class="form-input" id="login-email" type="email" name="email" data-constraints="@Email @Required">
                   <label class="form-label" for="login-email">E-mail</label>
@@ -169,7 +169,7 @@
             <div class="col-md-10 col-lg-6 col-xl-5">
               <h3>Registration Form</h3>
               <!-- RD Mailform-->
-              <form class="rd-form rd-mailform rd-form-centered">
+              <form class="rd-form rd-form-centered" data-form-type="contact" data-form-output="form-output-global" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="post">
                 <div class="form-wrap">
                   <input class="form-input" id="reg-name" type="text" name="name" data-constraints="@Required">
                   <label class="form-label" for="reg-name">Name</label>
@@ -194,7 +194,7 @@
           <div class="row justify-content-md-center">
             <div class="col-md-9 col-lg-8 col-xl-7">
               <h3>Subscribe to Stay Informed</h3>
-              <form class="rd-form rd-mailform rd-form-inline" data-form-output="form-output-global" data-form-type="subscribe" method="post" action="bat/rd-mailform.php">
+              <form class="rd-form rd-mailform rd-form-inline" data-form-output="form-output-global" data-form-type="subscribe" method="post" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID">
                 <div class="form-wrap">
                   <input class="form-input" id="subscribe-form-email" type="email" name="email" data-constraints="@Email @Required">
                   <label class="form-label" for="subscribe-form-email">Your E-mail</label>
@@ -214,7 +214,7 @@
             <div class="col-md-9 col-lg-7">
               <h3>Contact Form</h3>
               <!-- RD Mailform-->
-              <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+              <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID">
                 <div class="form-wrap">
                   <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
                   <label class="form-label" for="contact-name">Your Name</label>
@@ -247,7 +247,7 @@
             <div class="col-md-9 col-lg-7">
               <h3>Contact Form (with reCAPTCHA)</h3>
               <!-- RD Mailform-->
-              <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+              <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID">
                 <div class="form-wrap">
                   <input class="form-input" id="contact-2-name" type="text" name="name" data-constraints="@Required">
                   <label class="form-label" for="contact-2-name">Your Name</label>
@@ -287,7 +287,7 @@
               <h3>MailChimp</h3>
               <p class="big">Sign up to our newsletter and be the first to know about latest news, special offers, events, and discounts.</p>
               <!-- Mailchimp-->
-              <form class="rd-form mailchimp-mailform rd-form-inline" data-form-output="form-output-global" action="#" method="post">
+              <form class="rd-form rd-form-inline" data-form-type="subscribe" data-form-output="form-output-global" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="post">
                 <div class="form-wrap">
                   <label class="form-label" for="mailchimp-email">Enter your e-mail</label>
                   <input class="form-input" id="mailchimp-email" type="email" name="email" data-constraints="@Email @Required">
@@ -307,7 +307,7 @@
               <h3>Campaign Monitor</h3>
               <p class="big">Sign up to our newsletter and be the first to know about latest news, special offers, events, and discounts.</p>
               <!-- Campaign Monitor-->
-              <form class="rd-form campaign-mailform rd-form-inline" data-form-output="form-output-global" action="#" method="post">
+              <form class="rd-form rd-form-inline" data-form-type="subscribe" data-form-output="form-output-global" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="post">
                 <div class="form-wrap">
                   <label class="form-label" for="campaign-email">Enter your e-mail</label>
                   <input class="form-input" id="campaign-email" type="email" name="cm-zjjikd-zjjikd" data-constraints="@Email @Required">
@@ -342,7 +342,7 @@
                       <p class="footer-text-1">51 Francis Street, Darlinghurst NSW 2010, United States</p>
                       <div class="footer-text-2"><span class="text-primary">Ph.</span><a href="tel:#">+2545-8546-444555</a></div>
                       <!-- RD Mailform-->
-                      <form class="rd-mailform text-left rd-form-inline" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+                      <form class="rd-mailform text-left rd-form-inline" data-form-output="form-output-global" data-form-type="contact" method="post" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID">
                         <div class="form-wrap">
                           <label class="form-label" for="subscribe-email">E-mail</label>
                           <input class="form-input" id="subscribe-email" type="email" name="email" data-constraints="@Email @Required">
@@ -364,6 +364,7 @@
     <div class="snackbars" id="form-output-global"></div>
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/form-handler.js"></script>
   <script src="js/i18n.js"></script>
   </body>
 </html>
