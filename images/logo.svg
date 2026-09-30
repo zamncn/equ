@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 70" role="img" aria-label="EquipSupply">
+  <g>
+    <rect x="2.0" y="6.30" width="57.40" height="57.40" rx="13.78" fill="#FFC72C"/>
+    <rect x="11.95" y="18.55" width="8.42" height="32.91" fill="#10222F"/>
+    <rect x="11.95" y="18.55" width="31.38" height="7.65" fill="#10222F"/>
+    <rect x="11.95" y="43.80" width="31.38" height="7.65" fill="#10222F"/>
+    <rect x="11.95" y="31.56" width="23.34" height="6.89" fill="#10222F"/>
+    <polygon points="33.76,29.26 49.07,35.00 33.76,40.74" fill="#10222F"/>
+  </g>
+  <text x="174.20" y="35.0" font-family="Bahnschrift, 'Arial Narrow', Arial, sans-serif" font-weight="600" font-size="5" letter-spacing="0.10" fill="#10222F" dominant-baseline="central">EQUIP</text>
+  <text x="191.10" y="35.0" font-family="Bahnschrift, 'Arial Narrow', Arial, sans-serif" font-weight="600" font-size="5" letter-spacing="0.10" fill="#FFC72C" dominant-baseline="central">SUPPLY</text>
+</svg>
