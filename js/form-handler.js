@@ -1,13 +1,15 @@
 /* EquipSupply 静态站表单处理
- * 作用：解绑模板自带的 rd-mailform(ajaxForm)，改用 Formspree / 任意接受 POST 的静态表单服务。
- * 配置：把下方 DEFAULT_ENDPOINT 与每个 <form action> 里的占位 token
- *       REPLACE_WITH_YOUR_FORM_ID 换成你的真实表单地址即可（换服务商也只改这一处）。
+ * 作用：解绑模板自带的 rd-mailform(ajaxForm)，改用 Web3Forms 静态表单服务(免注册)。
+ * 配置：仅把下方 ACCESS_KEY 换成你在 web3forms.com 用收信邮箱获取的 access key 即可（全站唯一一处）。
+ *       所有表单的 action 已统一为 Web3Forms 提交端点。
  */
 (function () {
   'use strict';
 
-  // 默认端点：当表单 action 不是 http(s) 时回退使用
-  var DEFAULT_ENDPOINT = 'https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID';
+  // 默认端点（表单 action 已是 web3forms；此值仅作回退）
+  var DEFAULT_ENDPOINT = 'https://api.web3forms.com/submit';
+  // ★ 唯一需要替换的地方：去 https://web3forms.com 输入你的收信邮箱获取 access key
+  var ACCESS_KEY = 'REPLACE_WITH_YOUR_WEB3FORMS_KEY';
 
   function getEndpoint(form) {
     var a = form.getAttribute('action');
@@ -64,8 +66,16 @@
       var endpoint = getEndpoint(form);
       var fd = new FormData(form);
       var type = form.getAttribute('data-form-type') || 'contact';
-      fd.append('form_type', type);
-      fd.append('_subject', 'EquipSupply ' + type + ' form submission');
+
+      // 构造 Web3Forms 接受的 JSON 负载
+      var payload = {};
+      fd.forEach(function (value, key) {
+        if (key === '_subject') return; // 用下方标准 subject 替代
+        payload[key] = value;
+      });
+      payload.access_key = ACCESS_KEY;
+      payload.subject = 'EquipSupply ' + type + ' form submission';
+      payload.form_type = type;
 
       if (output) {
         output.innerHTML = '<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending…</span></p>';
@@ -74,15 +84,19 @@
 
       fetch(endpoint, {
         method: 'POST',
-        body: fd,
-        headers: { 'Accept': 'application/json' }
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
       }).then(function (resp) {
-        if (resp.ok) {
-          showMessage(output, 'Successfully sent!', 'success');
-          if (typeof form.reset === 'function') form.reset();
-        } else {
-          showMessage(output, 'Something went wrong. Please try again.', 'error');
-        }
+        return resp.text().then(function (text) {
+          var data = {};
+          try { data = JSON.parse(text); } catch (err) { /* 非 JSON 响应 */ }
+          if (resp.ok && data.success) {
+            showMessage(output, 'Successfully sent!', 'success');
+            if (typeof form.reset === 'function') form.reset();
+          } else {
+            showMessage(output, (data && data.message) ? data.message : 'Something went wrong. Please try again.', 'error');
+          }
+        });
       }).catch(function () {
         showMessage(output, 'Network error. Please try again.', 'error');
       });
