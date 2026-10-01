@@ -49,6 +49,14 @@ def build():
 
     # 2) footer + 脚本：从 <!-- Page Footer--> 到文件末尾
     footer = _extract(html, "<!-- Page Footer-->", "</html>", end_inclusive=False) + "</html>"
+    # 2.1) 404 是兜底轻量页：裁掉 footer 里的 amap 整站 iframe 地图容器
+    #      （绝对定位占 40vw、外部整站请求，既拖慢加载又撑乱布局；其他正式页保留）
+    footer = re.sub(
+        r'<div class="google-map-container">.*?</div>\s*', '', footer, flags=re.S)
+    # 2.2) 地图容器移除后，原本 justify-content-lg-end（内容靠右留地图位）会显空，
+    #      改为居中并放宽列宽，保证 404 页 footer 整齐
+    footer = footer.replace('row justify-content-lg-end', 'row justify-content-center')
+    footer = footer.replace('class="col-lg-7"', 'class="col-lg-10"')
 
     # 3) 404 正文：与 about-us/contacts 一致的 parallax 面包屑 + 404 区块
     body = """      <section class="parallax-container" data-parallax-img="images/title-bg.jpg">
@@ -70,7 +78,7 @@ def build():
         <div class="container text-center">
           <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8">
-              <div style="font-size:120px;line-height:1;font-weight:700;color:#fff;" class="wow fadeIn">404</div>
+              <div style="font-size:120px;line-height:1;font-weight:700;color:#fff;">404</div>
               <h3 class="title-decorate mt-3"><span data-zh="页面不存在">This page could not be found</span></h3>
               <p class="text-opacity-80" data-zh="抱歉，您访问的产品或分类不存在，或已被移动。请浏览我们的产品目录，或返回首页继续。">Sorry, the product or category you are looking for does not exist or has been moved. Browse our product catalog or return to the homepage.</p>
               <div class="group-md mt-4">
