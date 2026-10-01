@@ -114,6 +114,11 @@ def group_id(en):
     return "g-" + re.sub(r"[^a-z0-9]+", "-", en.lower()).strip("-")
 
 
+def product_href(p):
+    """产品详情页链接(位于 products/ 子目录, 由 build_product_pages.py 生成)"""
+    return f"products/p{p['id']}.html"
+
+
 # 首页精选(明确产品id, 每章取代表)
 HOME_IDS = ["1-03", "2-02", "3-01", "4-02", "5-03", "5-08", "5-10", "5-16"]
 
@@ -270,7 +275,9 @@ def _esc(s):
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
-def product_card(p, cols="col-md-6 col-lg-3", href="gallery.html", anchor=False):
+def product_card(p, cols="col-md-6 col-lg-3", href=None, anchor=False):
+    if href is None:
+        href = product_href(p)
     tw = 600 if p["w"] >= 600 else p["w"]
     th = int(p["h"] * tw / p["w"]) if p["w"] >= 600 else p["h"]
     anchor_attr = f' id="p{p["id"]}"' if anchor else ''
@@ -323,7 +330,7 @@ def write_equipment(products):
         if not items:
             continue
         href = CAT_PAGES[cat][0]
-        cards = "\n".join(product_card(p, href=href) for p in items)
+        cards = "\n".join(product_card(p) for p in items)
         groups.append(f'''              <div class="cat-head">
                 <h3 class="title-decorate"><span data-zh="{items[0]['cat_zh']}">{cat}</span></h3>
                 <a class="cat-more" href="{href}" data-zh="查看全部">View all</a>
@@ -360,7 +367,7 @@ def write_index(products):
     text = open(fp, encoding="utf-8").read()
     by_id = {p["id"]: p for p in products}
     picks = [by_id[i] for i in HOME_IDS if i in by_id]
-    cards = "\n".join(product_card(p, cols="col-md-6 col-lg-3", href=CAT_PAGES[p["cat_en"]][0])
+    cards = "\n".join(product_card(p, cols="col-md-6 col-lg-3")
                       for p in picks)
     inner = f'''
       <section class="section section-xl bg-gray-700">

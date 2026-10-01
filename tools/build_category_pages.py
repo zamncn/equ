@@ -10,7 +10,7 @@ import os
 import json
 import re
 from build_site_products import (ROOT, WORK, CAT_ORDER, CAT_PAGES, GROUPS,
-                                 group_id, product_card, _esc)
+                                 group_id, product_card, product_href, _esc)
 
 TEMPLATE = os.path.join(ROOT, "equipment.html")
 
@@ -41,7 +41,7 @@ def build():
         blocks = [f'''          <p class="text-opacity-80" data-zh="{_esc(intro_zh)}">{_esc(intro_en)}</p>''']
         for gen, gzh, ids in GROUPS[cat]:
             items = [by_id[i] for i in ids if i in by_id]
-            cards = "\n".join(product_card(p, href="gallery.html", anchor=True) for p in items)
+            cards = "\n".join(product_card(p, href=product_href(p)) for p in items)
             blocks.append(
                 f'''              <h3 class="title-decorate" id="{group_id(gen)}"><span data-zh="{gzh}">{gen}</span></h3>
               <div class="row row-15 row-gutters-14 products-grid">
