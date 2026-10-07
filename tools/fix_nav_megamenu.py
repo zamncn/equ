@@ -68,10 +68,10 @@ def menu_html(indent="                        "):
     cols = []
     for cen, czh, items in MENU:
         lis = "\n".join(
-            f'''                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="{href}" data-zh="{zh}">{en}</a></li>'''
+            f'''                              <li class="rd-megamenu-list-item"><a class="rd-megamenu-list-link" href="{href}">{en}</a></li>'''
             for en, zh, href in items)
         cols.append(f'''                          <li class="rd-megamenu-item">
-                            <h6 class="rd-megamenu-title" data-zh="{czh}">{cen}</h6>
+                            <h6 class="rd-megamenu-title">{cen}</h6>
                             <ul class="rd-megamenu-list">
 {lis}
                             </ul>

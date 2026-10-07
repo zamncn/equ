@@ -94,11 +94,11 @@ def build_section(p, cat_page, desc_en, desc_zh):
     top = p.get("specs", [])[:4]
     lis = "\n".join(
         '                  <li><dl class="list-terms-inline">'
-        f'<dt data-zh="{_esc(s["k_zh"])}">{_esc(s["k"])}</dt>'
+        f'<dt>{_esc(s["k"])}</dt>'
         f'<dd>{_esc(s["v"])}</dd></dl></li>'
         for s in top)
     rows = "\n".join(
-        f'                    <tr><td data-zh="{_esc(s["k_zh"])}">{_esc(s["k"])}</td>'
+        f'                    <tr><td>{_esc(s["k"])}</td>'
         f'<td>{_esc(s["v"])}</td></tr>'
         for s in p.get("specs", []))
     return f'''      <section class="section section-xl bg-default">
@@ -107,22 +107,22 @@ def build_section(p, cat_page, desc_en, desc_zh):
             <div class="col-lg-6">
               <div class="product-item-info">
                 <div class="product-item-info-name">
-                  <h3><span data-zh="{_esc(p['name_zh'])}">{_esc(p['name_en'])}</span></h3>
+                  <h3>{_esc(p['name_en'])}</h3>
                 </div>
-                <p class="product-cat text-primary" data-zh="{_esc(p['cat_zh'])}">{_esc(p['cat_en'])}</p>
+                <p class="product-cat text-primary">{_esc(p['cat_en'])}</p>
                 <ul class="team-info-list">
 {lis}
                 </ul>
-                <p data-zh="{_esc(desc_zh)}">{_esc(desc_en)}</p>
-                <a class="button button-primary button-lg" href="../contacts.html" data-zh="获取报价">Request a Quote</a>
-                <a class="button button-secondary button-lg" href="../{cat_page}" data-zh="返回分类">Back to {p['cat_en']}</a>
+                <p>{_esc(desc_en)}</p>
+                <a class="button button-primary button-lg" href="../contacts.html">Request a Quote</a>
+                <a class="button button-secondary button-lg" href="../{cat_page}">Back to {p['cat_en']}</a>
               </div>
             </div>
             <div class="col-lg-6"><img class="img-responsive" src="../{p['large']}" alt="{_esc(p['name_en'])}" width="{w}" height="{h}"/></div>
           </div>
           <div class="row row-50">
             <div class="col-12">
-              <h4 data-zh="技术参数">Specifications</h4>
+              <h4>Specifications</h4>
               <table class="table table-custom product-spec-table">
                 <tbody>
 {rows}
@@ -162,18 +162,18 @@ def build():
         text = tmpl
         text = re.sub(r'<title>.*?</title>',
                       f'<title>{_esc(p["name_en"])} - EquipSupply</title>', text, count=1)
-        meta = f'    <meta name="description" content="{_esc(de[:160])}" data-zh="{_esc(dz[:110])}">'
+        meta = f'    <meta name="description" content="{_esc(de[:160])}">'
         text = text.replace('</title>', '</title>\n' + meta, 1)
         text = text.replace(
             '<h2 class="breadcrumbs-custom-title">Product Page</h2>',
-            f'<h2 class="breadcrumbs-custom-title"><span data-zh="{_esc(p["name_zh"])}">{_esc(p["name_en"])}</span></h2>')
+            f'<h2 class="breadcrumbs-custom-title">{_esc(p["name_en"])}</h2>')
         text = re.sub(
             r'<ul class="breadcrumbs-custom-path">.*?</ul>',
             f'''<ul class="breadcrumbs-custom-path">
               <li><a href="../index.html">Home</a></li>
               <li><a href="../equipment.html">Products</a></li>
-              <li><a href="../{cat_page}" data-zh="{_esc(p["cat_zh"])}">{_esc(p["cat_en"])}</a></li>
-              <li class="active"><span data-zh="{_esc(p["name_zh"])}">{_esc(p["name_en"])}</span></li>
+              <li><a href="../{cat_page}">{_esc(p["cat_en"])}</a></li>
+              <li class="active">{_esc(p["name_en"])}</li>
             </ul>''',
             text, count=1, flags=re.S)
         sec = build_section(p, cat_page, de, dz)

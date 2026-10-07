@@ -37,13 +37,12 @@ def industry_card(name_en, name_zh, img, cats, count):
     href = CAT_PAGES[primary][0] if primary and primary in CAT_PAGES else "equipment.html"
     cat_zh = "、".join(CAT_PAGES[c][2] for c in cats if c in CAT_PAGES)
     models_en = f"{count} models"
-    models_zh = f"{count} 款产品"
     return f'''            <div class="col-md-6 col-lg-4 wow fadeInUp"><a class="box-product" href="{href}">
                 <div class="box-product-figure"><img src="{img}" alt="{_esc(name_en)}" width="379" height="291"/>
                 </div>
                 <div class="box-product-caption">
-                  <h4 class="box-product-title" data-zh="{_esc(name_zh)}">{_esc(name_en)}</h4>
-                  <p data-zh="{models_zh}｜涵盖{cat_zh}">{models_en}</p>
+                  <h4 class="box-product-title">{_esc(name_en)}</h4>
+                  <p>{models_en}</p>
                   <div class="box-product-divider"></div>
                 </div></a>
             </div>'''

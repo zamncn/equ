@@ -142,7 +142,7 @@ def product_href(p):
 # 首页精选(明确产品id, 每章取代表)
 HOME_IDS = ["1-03", "2-02", "3-01", "4-02", "5-03", "5-08", "5-10", "5-16"]
 
-# 参数key -> 中文 (data-zh)
+# 参数 key(中文 k_zh 字段保留在数据里, 但不再输出到页面)
 PARAM_ZH = {
     "Overall size": "整车尺寸", "Vehicle size": "整车尺寸",
     "Overall machine weight": "整机重量", "Machine weight": "整机重量",
@@ -305,17 +305,17 @@ def product_card(p, cols="col-md-6 col-lg-3", href=None, anchor=False):
     if p["specs"]:
         lis = []
         for s in p["specs"][:4]:
-            lis.append(f'''                        <li><span class="spec-k" data-zh="{_esc(s['k_zh'])}">{_esc(s['k'])}</span>: <span class="spec-v">{_esc(s['v'])}</span></li>''')
+            lis.append(f'''                        <li><span class="spec-k">{_esc(s['k'])}</span>: <span class="spec-v">{_esc(s['v'])}</span></li>''')
         specs = ('\n                    <ul class="box-product-specs">\n'
                  + "\n".join(lis) + "\n                    </ul>")
     elif p["desc_en"]:
-        de, dz = _esc(p["desc_en"][:150]), _esc(p["desc_zh"][:110])
-        specs = f'\n                    <p class="box-product-desc" data-zh="{dz}">{de}</p>'
+        de = _esc(p["desc_en"][:150])
+        specs = f'\n                    <p class="box-product-desc">{de}</p>'
     return f'''                <div class="col-12 col-sm-6 {cols}"{anchor_attr}><a class="box-product" href="{href}">
                     <div class="box-product-figure"><img src="{p['thumb']}" alt="{p['name_en']}" width="{tw}" height="{th}"/>
                     </div>
                     <div class="box-product-caption">
-                      <h4 class="box-product-title"><span data-zh="{_esc(p['name_zh'])}">{_esc(p['name_en'])}</span></h4>{specs}
+                      <h4 class="box-product-title">{_esc(p['name_en'])}</h4>{specs}
                       <div class="box-product-divider"></div>
                     </div></a>
                 </div>'''
@@ -352,8 +352,8 @@ def write_equipment(products):
         href = CAT_PAGES[cat][0]
         cards = "\n".join(product_card(p) for p in items)
         groups.append(f'''              <div class="cat-head">
-                <h3 class="title-decorate"><span data-zh="{items[0]['cat_zh']}">{cat}</span></h3>
-                <a class="cat-more" href="{href}" data-zh="查看全部">View all</a>
+                <h3 class="title-decorate">{cat}</h3>
+                <a class="cat-more" href="{href}">View all</a>
               </div>
               <div class="row row-15 row-gutters-14 products-grid">
 {cards}
@@ -400,7 +400,7 @@ def write_index(products):
             </div>
             <div class="col-lg-8 wow-outer">
               <div class="wow slideInLeft">
-                <p class="text-opacity-80" data-zh="{INTRO_ZH}">{INTRO_EN} <a class="text-primary" href="equipment.html">View the full catalog</a></p>
+                <p class="text-opacity-80">{INTRO_EN} <a class="text-primary" href="equipment.html">View the full catalog</a></p>
               </div>
             </div>
           </div>

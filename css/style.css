@@ -6538,7 +6538,7 @@ html.tablet .ui-to-top {
 	border-left: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-/* 4 列时列表项字号略收，避免英文长词换行 */
+/* slightly smaller list font at 4 columns to avoid wrapping long English words */
 .rd-navbar-static .rd-navbar-megamenu > .rd-megamenu-item .rd-megamenu-list-link {
 	font-size: 13px;
 	line-height: 1.5;

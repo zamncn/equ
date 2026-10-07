@@ -64,10 +64,10 @@ def build():
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-12 col-lg-9">
-                <h2 class="breadcrumbs-custom-title"><span data-zh="页面未找到">Page Not Found</span></h2>
+                <h2 class="breadcrumbs-custom-title">Page Not Found</h2>
                 <ul class="breadcrumbs-custom-path">
                   <li><a href="index.html">Home</a></li>
-                  <li class="active"><span data-zh="404 错误">404 Error</span></li>
+                  <li class="active">404 Error</li>
                 </ul>
               </div>
             </div>
@@ -79,11 +79,11 @@ def build():
           <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8">
               <div style="font-size:120px;line-height:1;font-weight:700;color:#fff;">404</div>
-              <h3 class="title-decorate mt-3"><span data-zh="页面不存在">This page could not be found</span></h3>
-              <p class="text-opacity-80" data-zh="抱歉，您访问的产品或分类不存在，或已被移动。请浏览我们的产品目录，或返回首页继续。">Sorry, the product or category you are looking for does not exist or has been moved. Browse our product catalog or return to the homepage.</p>
+              <h3 class="title-decorate mt-3">This page could not be found</h3>
+              <p class="text-opacity-80">Sorry, the product or category you are looking for does not exist or has been moved. Browse our product catalog or return to the homepage.</p>
               <div class="group-md mt-4">
-                <a class="button button-lg button-primary" href="equipment.html" data-zh="浏览产品">Browse Products</a>
-                <a class="button button-lg button-gray-4" href="index.html" data-zh="返回首页">Back to Home</a>
+                <a class="button button-lg button-primary" href="equipment.html">Browse Products</a>
+                <a class="button button-lg button-gray-4" href="index.html">Back to Home</a>
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ def build():
         '<html class="wide wow-animation" lang="en">\n'
         "  <head>\n"
         "    <title>404 - Page Not Found - EquipSupply</title>\n"
-        '    <meta name="description" content="The product or category you are looking for could not be found. Browse the full EquipSupply heavy-duty truck, semi-trailer and construction machinery catalog." data-zh="您访问的产品或分类不存在。浏览 EquipSupply 全系列重卡、半挂车与工程机械产品目录。">\n'
+        '    <meta name="description" content="The product or category you are looking for could not be found. Browse the full EquipSupply heavy-duty truck, semi-trailer and construction machinery catalog.">\n'
         '    <meta charset="utf-8">\n'
         '    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">\n'
         '    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n'
