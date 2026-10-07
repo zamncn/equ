@@ -108,6 +108,26 @@ GROUPS = {
     ],
 }
 
+# --- 行业领域页(industries.html)模块: 行业 -> 关联的产品分类 ---
+# 每个行业可关联 1~N 个产品分类(cat_en); 卡片 href 指向主分类页,
+# 卡片上的 "N models" 由关联分类的真实产品数实时统计(不再是模板假数字)。
+# 后续增改行业只改这里, 重跑 tools/build_industries.py 即更新。
+# 字段: (英文名, 中文名, 图片, [关联的 cat_en 列表, 第一个为主分类])
+INDUSTRIES = [
+    ("Agriculture", "农业",
+     "images/home-1-379x291.jpg", ["Agriculture Machinery"]),
+    ("Construction", "建筑施工",
+     "images/home-2-379x291.jpg", ["Construction Machinery"]),
+    ("Asphalt Paving", "沥青路面",
+     "images/home-3-379x291.jpg", ["Construction Machinery", "Dump Truck"]),
+    ("Warehousing", "仓储物流",
+     "images/home-4-379x291.jpg", ["Semi-Trailer", "Tractor Truck"]),
+    ("Mining", "矿山开采",
+     "images/home-5-379x291.jpg", ["Dump Truck", "Construction Machinery"]),
+    ("Transportation", "公路运输",
+     "images/home-6-379x291.jpg", ["Tractor Truck", "Semi-Trailer"]),
+]
+
 
 def group_id(en):
     """子类型分组锚点 id"""
