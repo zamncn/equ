@@ -242,6 +242,11 @@
     .wa-float { right: 16px; bottom: 16px; padding: 10px; }
     .wa-float .wa-svg { width: 26px; height: 26px; flex-basis: 26px; }
   }
+  /* 桌面端给模板自带的返回顶部按钮(.ui-to-top, right 40 / bottom 40, 60x60)让位:
+     WhatsApp 堆叠在其正上方, 右边缘对齐 */
+  @media (min-width: 576px) {
+    .wa-float { right: 40px; bottom: 112px; }
+  }
   @media print {
     .wa-float { display: none !important; }
   }
